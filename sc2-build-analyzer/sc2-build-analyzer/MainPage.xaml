@@ -9,33 +9,37 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <NavigationView Content="NavigationView">
+        <NavigationView x:Name="NavigationView"
+                        ItemInvoked="NavigationView_OnItemInvoked"
+                        BackRequested="NavigationView_OnBackRequested"
+                        IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Builds"/>
 
-                <NavigationViewItem Content="Create Build">
+                <NavigationViewItem Content="Create Build" Tag="NewBldView">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF8AA;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="History">
+                <NavigationViewItem Content="History" Tag="BldHistView">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE81C;" />
                     </NavigationViewItem.Icon>  
                 </NavigationViewItem>
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader Content="Analysis"/>
-                <NavigationViewItem Content="Replays" >
+                <NavigationViewItem Content="Replays"  Tag="ReplaysView">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8FD;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Compare Builds" >
+                <NavigationViewItem Content="Compare Builds"  Tag="CmprBldView">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE89A;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
+            <Frame x:Name="ContentFrame" NavigationFailed="ContentFrame_OnNavigationFailed"/>
         </NavigationView>
     </Grid>
 </Page>
